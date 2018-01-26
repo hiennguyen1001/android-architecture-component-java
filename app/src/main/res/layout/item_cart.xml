@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="hiennguyen.me.architecture.R" />
+
+        <import type="hiennguyen.me.architecture.example.data.models.ActionType"/>
+
+        <variable
+            name="cart"
+            type="hiennguyen.me.architecture.example.features.bindingmodels.CartItemBindingViewModel" />
+
+        <variable
+            name="actionHandler"
+            type="com.drextended.actionhandler.listener.ActionClickListener" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:actionHandler="@{actionHandler}"
+        app:actionType="@{ActionType.OPEN_URL}"
+        app:actionTypeLongClick="@{ActionType.LONG_CLICK}"
+        app:model="@{cart}"
+        android:padding="@dimen/normal_pad">
+
+        <ImageView
+            android:id="@+id/iv_product"
+            android:layout_width="@dimen/product_thumb_size"
+            android:layout_height="@dimen/product_thumb_size"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{cart.product.imageUrls.get(0)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/fruit_demo"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_pad"
+            android:layout_marginLeft="@dimen/normal_pad"
+            android:text="@{cart.product.name}"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+            android:textSize="@dimen/normal_text"
+            app:layout_constraintEnd_toStartOf="@+id/layout_quantity"
+            app:layout_constraintStart_toEndOf="@+id/iv_product"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textColorRes="@{R.color.black}"
+            tools:text="@string/lorem"
+            android:maxLines="1"/>
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_pad"
+            android:layout_marginLeft="@dimen/normal_pad"
+            android:layout_marginTop="@dimen/small_pad"
+            android:text="@{cart.product.description}"
+            android:textSize="@dimen/small_text"
+            app:layout_constraintEnd_toStartOf="@+id/layout_quantity"
+            app:layout_constraintStart_toEndOf="@+id/iv_product"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            android:maxLines="3"
+            tools:text="@string/lorem"/>
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{cart.totalPrice}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textColorRes="@{R.color.black}"
+            android:textSize="@dimen/normal_text"
+            tools:text="$10.00"/>
+
+
+        <hiennguyen.me.architecture.example.features.customviews.NumberPicker
+            android:id="@+id/layout_quantity"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/small_pad"
+            android:layout_marginStart="@dimen/small_pad"
+            android:background="@drawable/ic_rect"
+            app:currentQuantity="@{cart.quantity}"
+            app:backgroundStrokeColor="@{R.color.colorPrimary}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_price"
+            app:layout_constraintStart_toEndOf="@id/tv_desc"
+            app:strokeSize="@{R.dimen.tiny_stroke_size}"
+            app:actionHandler="@{actionHandler}"
+            app:actionTypeQuantityChange="@{ActionType.NUMBER_PICKER_QUANTITY_CHANGE}"
+            app:model="@{cart}"
+            android:layout_marginLeft="@dimen/small_pad"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="hiennguyen.me.architecture.R"/>
+        <variable
+            name="product" type="hiennguyen.me.architecture.example.features.bindingmodels.ProductsBindingViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:padding="@dimen/small_pad"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/product_item_image_size"
+            tools:srcCompat="@drawable/fruit_demo"
+            app:imageUrl="@{product.imageUrls.get(0)}"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/normal_pad"
+            android:paddingRight="@dimen/normal_pad"
+            android:paddingBottom="@dimen/small_pad"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+            tools:text="@string/lorem"
+            android:text="@{product.description}"
+            android:maxLines="2"
+            android:lines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintBottom_toTopOf="@+id/tv_price"/>
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+            tools:text="$200,000.00"
+            android:text="@{String.valueOf(product.price)}"
+            android:paddingLeft="@dimen/normal_pad"
+            android:paddingRight="@dimen/normal_pad"
+            android:paddingBottom="@dimen/small_pad"
+            android:maxLines="1"
+            android:lines="1"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_add_to_cart"
+            android:layout_width="130dp"
+            android:layout_height="36dp"
+            android:layout_marginBottom="@dimen/normal_pad"
+            android:text="@string/add_to_cart"
+            android:textAllCaps="false"
+            app:backgroundColorRes="@{R.color.colorPrimary}"
+            android:layout_gravity="center"
+            app:textColorRes="@{R.color.white}"
+            tools:background="@color/colorPrimary"/>
+
+    </LinearLayout>
+</layout>

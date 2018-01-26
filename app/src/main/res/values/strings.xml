@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">Architecture Component Example</string>
+
+    <string name="action_card">Card</string>
+    <string name="action_product">Product</string>
+
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="products">Products</string>
+    <string name="cart">Cart</string>
+    <string name="title_activity_product_detail">ProductDetailActivity</string>
+    <string name="about_the_product">about the product</string>
+    <string name="product_info">Product Info</string>
+    <string name="out_of_stock">out of stock</string>
+    <string name="notify_me">Notify me</string>
+    <string name="subscribed">Subscribed</string>
+    <string name="subtotal">subtotal</string>
+    <string name="type_promote_code_hint">TYPE PROMOTE CODE</string>
+    <string name="vat_included">vat (included)</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+
+    <string name="number_picker_default_text_holder">Qty.</string>
+    <string name="apply">Apply</string>
+    <string name="promo_code_accepted">Promo code accepted</string>
+    <string name="invalid_promo_code">invalid promo code</string>
+    <string name="discount_rate_in_percentage">%1$,.0f%% Discount</string>
+    <string name="discount">discount</string>
+    <string name="empty_cart_message">Check out our products to get started.</string>
+    <string name="empty_cart_title">Your shopping cart is empty</string>
+    <string name="start_shopping">start shopping</string>
+
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae sagittis enim, sit amet elementum ante. Quisque sit amet volutpat est, nec interdum sem. Sed semper tristique augue, eget dignissim eros efficitur in. Etiam metus metus, egestas id dui in, varius ullamcorper sem. Vivamus sit amet blandit lacus. Curabitur congue mollis massa ac iaculis. Donec vitae lacus purus. Donec aliquam rutrum velit non maximus. Duis id tincidunt quam. Suspendisse feugiat scelerisque purus vel condimentum. Proin ut velit ipsum. Sed interdum auctor iaculis. Donec ornare ante ac laoreet condimentum. Nullam tempor, leo ac consequat tempor, ex arcu varius lacus, a ullamcorper nunc lorem nec sapien. Praesent non consectetur leo.</string>
+    <string name="add_to_cart">Add to cart</string>
 </resources>

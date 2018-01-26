@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="hiennguyen.me.architecture.R"/>
+    </data>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            tools:src="@drawable/fruit_demo"
+            android:scaleType="centerCrop"
+            android:id="@+id/iv_empty_cart"
+            android:layout_width="@dimen/iv_empty_size"
+            android:layout_height="@dimen/iv_empty_size"
+            android:layout_marginTop="@dimen/super_large_spacing"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:paddingTop="@dimen/large_spacing"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            android:id="@+id/tv_empty_cart_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/empty_cart_title"/>
+
+        <TextView
+            android:paddingTop="@dimen/normal_pad"
+            android:id="@+id/tv_empty_cart_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+            android:text="@string/empty_cart_message"/>
+
+        <Button
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/large_spacing"
+            android:id="@+id/btn_add_to_cart"
+            android:text="@string/start_shopping"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            app:textColorRes="@{R.color.white}"
+            android:background="@drawable/btn_shape_round_primary_color"
+            app:backgroundShapeColor="@{R.color.colorPrimary}"
+            android:layout_marginBottom="@dimen/small_pad"
+            android:layout_marginLeft="@dimen/screen_left_right_margin"
+            android:layout_marginRight="@dimen/screen_left_right_margin"/>
+
+    </LinearLayout>
+
+</layout>

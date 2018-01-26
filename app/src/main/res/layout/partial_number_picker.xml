@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:tools="http://schemas.android.com/tools">
+    <ImageView
+        android:layout_margin="@dimen/small_pad"
+        android:id="@+id/tv_minus"
+        android:layout_width="@dimen/quantity_text_box_size"
+        android:layout_height="@dimen/quantity_text_box_size"
+        android:gravity="center"
+        app:srcCompat="@drawable/ic_remove_black_24dp"
+        android:textSize="@dimen/large_text" />
+
+    <TextView
+        android:layout_margin="@dimen/small_pad"
+        android:id="@+id/tv_quantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:minWidth="@dimen/quantity_text_width"
+        tools:text="sdafdsjafl"
+        tools:layout_width="wrap_content"
+        android:textSize="@dimen/normal_text" />
+
+    <ImageView
+        android:layout_margin="@dimen/small_pad"
+        android:id="@+id/tv_plus"
+        android:layout_width="@dimen/quantity_text_box_size"
+        android:layout_height="@dimen/quantity_text_box_size"
+        android:gravity="center"
+        app:srcCompat="@drawable/ic_add_black_24dp"
+        android:textSize="@dimen/large_text" />
+</merge>

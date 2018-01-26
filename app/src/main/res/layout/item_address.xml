@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="hiennguyen.me.architecture.R" />
+
+        <variable
+            name="address"
+            type="hiennguyen.me.architecture.example.data.models.realm.RAddress" />
+
+        <variable
+            name="actionHandler"
+            type="com.drextended.actionhandler.listener.ActionClickListener" />
+    </data>
+
+    <LinearLayout
+        android:padding="@dimen/small_pad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="@dimen/normal_text"
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{address.address1}"
+            app:textColorRes="@{R.color.colorAccent}"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:textSize="@dimen/normal_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{address.address2}"
+            tools:text="Content" />
+    </LinearLayout>
+</layout>

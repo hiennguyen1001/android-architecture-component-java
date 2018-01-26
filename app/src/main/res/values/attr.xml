@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NumberPicker">
+        <attr name="currentQuantity" format="integer" />
+        <attr name="textHolder" format="string" />
+    </declare-styleable>
+</resources>

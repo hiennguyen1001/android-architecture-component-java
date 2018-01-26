@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="product"
+            type="hiennguyen.me.architecture.example.features.bindingmodels.ProductDetailBindingViewModel"/>
+
+        <import type="hiennguyen.me.architecture.R"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/appbar"
+            layout="@layout/partial_app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/srollview_margin_bottom"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context="com.mingle.market.ui.products.ProductsActivity">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="4:3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/screen_left_right_margin"
+                    android:layout_marginStart="@dimen/screen_left_right_margin"
+                    android:layout_marginTop="@dimen/screen_left_right_margin"
+                    android:maxLines="2"
+                    android:text="@{product.name}"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewPager"
+                    tools:text="@string/lorem"/>
+
+
+                <TextView
+                    android:id="@+id/tv_product_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/small_pad"
+                    android:paddingTop="@dimen/normal_pad"
+                    android:text="@{String.valueOf(product.price)}"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/product_name"
+                    tools:text="$200,000.00"/>
+
+                <TextView
+                    android:id="@+id/tv_out_of_stock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/out_of_stock"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_price"
+                    app:textColorRes="@{R.color.colorPrimary}"
+                    app:visibleOrGone="@{product.outOfStock}"/>
+
+                <Button
+                    android:id="@+id/btn_notify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_notify_me_selector"
+                    android:drawablePadding="@dimen/small_pad"
+                    android:paddingEnd="@dimen/large_pad"
+                    android:paddingStart="@dimen/large_pad"
+                    android:text="@string/notify_me"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_out_of_stock"
+                    app:visibleOrGone="@{product.outOfStock}"
+                    tools:drawableLeft="@drawable/ic_check_white_20dp"
+                    tools:layout_editor_absoluteY="0dp"/>
+
+                <TextView
+                    android:id="@+id/tv_about_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/screen_left_right_margin"
+                    android:layout_marginStart="@dimen/screen_left_right_margin"
+                    android:layout_marginTop="@dimen/normal_pad"
+                    android:text="@string/about_the_product"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_notify"/>
+
+                <TextView
+                    android:id="@+id/tv_product_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/screen_left_right_margin"
+                    android:layout_marginEnd="@dimen/screen_left_right_margin"
+                    android:layout_marginStart="@dimen/screen_left_right_margin"
+                    android:layout_marginTop="@dimen/screen_left_right_margin"
+                    android:text="@{product.description}"
+                    app:textColorRes="@{R.color.black}"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_about_product"
+                    tools:text="@string/lorem"/>
+            </android.support.constraint.ConstraintLayout>
+
+        </ScrollView>
+
+        <Button
+            android:layout_gravity="bottom"
+            android:id="@+id/btn_add_to_cart"
+            android:text="@string/add_to_cart"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            app:textColorRes="@{R.color.white}"
+            android:background="@drawable/btn_shape_round_primary_color"
+            app:backgroundShapeColor="@{product.addToCartButtonColor}"
+            android:layout_marginBottom="@dimen/small_pad"
+            android:layout_marginLeft="@dimen/screen_left_right_margin"
+            android:layout_marginRight="@dimen/screen_left_right_margin"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</layout>

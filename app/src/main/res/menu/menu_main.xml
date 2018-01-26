@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.mingle.market.MainActivity">
+    <item
+        android:id="@+id/action_card"
+        android:orderInCategory="100"
+        android:title="@string/action_card"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_product"
+        android:orderInCategory="100"
+        android:title="@string/action_product"
+        app:showAsAction="never" />
+</menu>

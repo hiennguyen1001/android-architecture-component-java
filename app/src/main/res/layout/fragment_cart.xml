@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="hiennguyen.me.architecture.R"/>
+
+        <import type="hiennguyen.me.architecture.example.data.models.Status"/>
+
+        <import type="hiennguyen.me.architecture.example.data.models.Resource"/>
+
+        <import type="hiennguyen.me.architecture.example.data.models.PromotionCode"/>
+
+        <variable name="cartItems" type="Resource"/>
+
+        <variable name="promoCode" type="Resource&lt;PromotionCode&gt;"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintDimensionRatio="4:3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_cart"/>
+
+        <ProgressBar
+            android:id="@+id/pb_carts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/super_large_spacing"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rvCart"
+            app:visibleOrGone="@{cartItems.status == Status.LOADING}"
+            tools:visibility="visible"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvCart"
+            app:layout_constraintVertical_bias="0.2"
+            app:visibleOrGone="@{cartItems.status != Status.LOADING}">
+
+
+            <EditText
+                android:id="@+id/et_promote_code"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:hint="@string/type_promote_code_hint"
+                android:maxLines="1"
+                android:textSize="@dimen/normal_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+
+            <ImageView
+                android:id="@+id/iv_clear_promo_code"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:padding="@dimen/small_pad"
+                app:layout_constraintBottom_toBottomOf="@+id/et_promote_code"
+                app:layout_constraintEnd_toEndOf="@id/et_promote_code"
+                app:layout_constraintTop_toTopOf="@+id/et_promote_code"
+                app:srcCompat="@drawable/ic_clear_gray_15dp"/>
+
+            <ImageView
+                android:id="@+id/iv_valid_promo_code"
+                android:layout_width="@dimen/iv_promo_code_size"
+                android:layout_height="@dimen/iv_promo_code_size"
+                android:padding="@dimen/small_pad"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/et_promote_code"
+                app:layout_constraintStart_toEndOf="@+id/et_promote_code"
+                app:layout_constraintTop_toTopOf="@+id/et_promote_code"
+                app:srcCompat="@drawable/ic_check_circle_green_24dp"
+                app:visibleOrGone="@{promoCode.data != null  &amp;&amp; promoCode.data.status == PromotionCode.Status.VALID}"/>
+
+            <ImageView
+                android:id="@+id/iv_invalid_promo_code"
+                android:layout_width="@dimen/iv_promo_code_size"
+                android:layout_height="@dimen/iv_promo_code_size"
+                android:padding="@dimen/small_pad"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/et_promote_code"
+                app:layout_constraintStart_toEndOf="@+id/et_promote_code"
+                app:layout_constraintTop_toTopOf="@+id/et_promote_code"
+                app:srcCompat="@drawable/ic_cancel_pink_24dp"
+                app:visibleOrGone="@{promoCode.data != null &amp;&amp; promoCode.data.status == PromotionCode.Status.INVALID}"/>
+
+            <Button
+                android:id="@+id/btn_apply_promote_code"
+                android:layout_width="@dimen/btn_apply_promote_code_width"
+                android:layout_height="@dimen/btn_apply_promote_code_height"
+                android:layout_marginLeft="@dimen/small_pad"
+                android:layout_marginStart="@dimen/small_pad"
+                android:background="@drawable/btn_shape_round_primary_color"
+                android:text="@string/apply"
+                android:textSize="@dimen/normal_text"
+                app:backgroundShapeColor="@{R.color.colorPrimary}"
+                app:layout_constraintBottom_toBottomOf="@+id/et_promote_code"
+                app:layout_constraintStart_toEndOf="@+id/et_promote_code"
+                app:layout_constraintTop_toTopOf="@+id/et_promote_code"
+                app:textColorRes="@{R.color.white}"/>
+
+            <ProgressBar
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="@dimen/small_pad"
+                android:layout_marginStart="@dimen/small_pad"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/et_promote_code"
+                app:layout_constraintStart_toEndOf="@+id/et_promote_code"
+                app:layout_constraintTop_toTopOf="@+id/et_promote_code"
+                app:visibleOrGone="@{promoCode.status == Status.LOADING}"/>
+
+            <TextView
+                android:id="@+id/tv_promo_code_rejected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/invalid_promo_code"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_promote_code"
+                app:textColorRes="@{R.color.red_pink}"
+                app:visibleOrGone="@{promoCode.data != null &amp;&amp; promoCode.data.status == PromotionCode.Status.INVALID}"/>
+
+            <TextView
+                android:id="@+id/tv_promo_code_accepted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/promo_code_accepted"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_promote_code"
+                app:textColorRes="@{R.color.light_green}"
+                app:visibleOrGone="@{promoCode.data != null &amp;&amp; promoCode.data.status == PromotionCode.Status.VALID}"/>
+
+            <TextView
+                android:id="@+id/tv_promo_code_discount_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@{@string/discount_rate_in_percentage(promoCode.data.discountRate * 100)}"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_promo_code_accepted"
+                app:textColorRes="@{R.color.gray}"
+                app:visibleOrGone="@{promoCode.data != null &amp;&amp; promoCode.data.status == PromotionCode.Status.VALID}"/>
+
+            <TextView
+                android:id="@+id/tv_subtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/screen_left_right_margin"
+                android:layout_marginStart="@dimen/screen_left_right_margin"
+                android:layout_marginTop="@dimen/super_large_spacing"
+                android:text="@string/subtotal"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_promote_code"/>
+
+
+            <TextView
+                android:id="@+id/tv_subtotal_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/screen_left_right_margin"
+                android:layout_marginRight="@dimen/screen_left_right_margin"
+                android:layout_marginTop="@dimen/super_large_spacing"
+                android:text="@string/subtotal"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@id/tv_subtotal"
+                app:layout_constraintTop_toBottomOf="@+id/et_promote_code"
+                tools:text="$1000000"/>
+
+            <TextView
+                android:id="@+id/tv_vat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/screen_left_right_margin"
+                android:layout_marginStart="@dimen/screen_left_right_margin"
+                android:text="@string/vat_included"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_subtotal"/>
+
+            <TextView
+                android:id="@+id/tv_vat_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/screen_left_right_margin"
+                android:layout_marginRight="@dimen/screen_left_right_margin"
+                android:text="@string/subtotal"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@id/tv_vat"
+                app:layout_constraintTop_toBottomOf="@+id/tv_subtotal_price"
+                tools:text="$100"/>
+
+            <TextView
+                android:id="@+id/tv_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/screen_left_right_margin"
+                android:layout_marginStart="@dimen/screen_left_right_margin"
+                android:text="@string/discount"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_vat"
+                app:visibleOrGone="@{promoCode.data != null  &amp;&amp; promoCode.data.status == PromotionCode.Status.VALID}"/>
+
+            <TextView
+                android:id="@+id/tv_discount_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/screen_left_right_margin"
+                android:layout_marginRight="@dimen/screen_left_right_margin"
+                android:text="@string/subtotal"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@id/tv_vat"
+                app:layout_constraintTop_toBottomOf="@+id/tv_vat_price"
+                app:visibleOrGone="@{promoCode.data != null  &amp;&amp; promoCode.data.status == PromotionCode.Status.VALID}"
+                tools:text="$100"/>
+
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/screen_left_right_margin"
+                android:layout_marginStart="@dimen/screen_left_right_margin"
+                android:layout_marginTop="@dimen/large_spacing"
+                android:text="total"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_vat"
+                app:layout_constraintVertical_bias="0.0"/>
+
+            <TextView
+                android:id="@+id/tv_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/screen_left_right_margin"
+                android:layout_marginRight="@dimen/screen_left_right_margin"
+                android:layout_marginTop="@dimen/large_spacing"
+                android:text="@string/subtotal"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@id/tv_total"
+                app:layout_constraintTop_toBottomOf="@+id/tv_vat_price"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="$1000100"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <include
+            android:id="@+id/empty_layout"
+            android:visibility="gone"
+            layout="@layout/partial_empty_cart"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>
